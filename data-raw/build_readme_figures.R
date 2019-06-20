@@ -50,11 +50,12 @@ dt = gapminder::gapminder %>%
   arrange(year, country)
 
 png("figures/geom_boulder.png", height = 1400, width = 2000)
-ggplot(dt, aes(x = gdpPercap, y = lifeExp)) +
+ggplot(dt, aes(x = gdpPercap, y = lifeExp, fill=lifeExp)) +
   geom_boulder(aes(size = pop), pch = 21, show.legend = FALSE,
                linetype=5, linewidth=2, alpha=0.3) +
   scale_x_log10(limits = c(230, 63000)) +
   scale_size_continuous(range = c(1,40)) + ylim(c(39, 87)) +
+  scale_fill_gradientn(colors=c("white", "black", "#0072CE")) +
   labs(y="variable 2",
        x="variable 1",
        title="A boulderplot") +
